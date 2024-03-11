@@ -30,7 +30,7 @@
     npm run dev
     ```
 
-5. Visit `http://localhost:8080` in your browser to access Dekadio.
+5. Visit `http://localhost` in your browser to access Memoir.
 
 ## Website screenshots
 1. Login
