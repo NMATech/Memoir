@@ -100,12 +100,13 @@
             storageBucket: "memoir-unsika.appspot.com",
             messagingSenderId: "228249324406",
             appId: "1:228249324406:web:b3a3550bc9882481354857",
-            measurementId: "G-WD353SZ0WZ"
+            measurementId: "G-WD353SZ0WZ",
+            databaseURL: "https://memoir-unsika-default-rtdb.asia-southeast1.firebasedatabase.app/"
         };
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const db = getDatabase();
+        const db = getDatabase(app);
         const auth = getAuth(app);
         const analytics = getAnalytics(app);
 
@@ -121,7 +122,12 @@
             evt.preventDefault();
             if (password.value === repassword.value) {
                 createUserWithEmailAndPassword(auth, email.value, password.value).then((credentials) => {
-                    console.log(credentials);
+                    set(ref(db, 'UserAuthList/' + credentials.user.uid), {
+                        username: username.value,
+                        email: email.value,
+                        potoProfile: "src/img/man.jpg"
+                    })
+                    alert('berhasil register');
                 }).catch((error) => {
                     console.log(error.message);
                     let errorMessage = error.message; // Assuming error.message contains the error message

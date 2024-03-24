@@ -18,4 +18,8 @@ class controllerHome extends Controller
     {
         return view('pages.register');
     }
+
+    public function home(){
+        return view('pages.home');
+    }
 }

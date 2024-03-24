@@ -120,8 +120,16 @@
         let signInUser = evt => {
             evt.preventDefault();
             signInWithEmailAndPassword(auth, email.value, password.value).then((credentials) => {
-                console.log(credentials);
-                alert('berhasil login');
+                get(child(dbref, 'UserAuthList/' + credentials.user.uid)).then((snapshot) => {
+                    if (snapshot.exists) {
+                        sessionStorage.setItem("user-info", JSON.stringify({
+                            username: snapshot.val().username,
+                            email: snapshot.val().email
+                        }))
+                        sessionStorage.setItem("user-creds", JSON.stringify(credentials.user));
+                        windows.location.href = 'home.blade.php';
+                    }
+                })
             }).catch((error) => {
                 console.log(error.message);
                 if (error.message == 'Firebase: Error (auth/invalid-credential).') {
