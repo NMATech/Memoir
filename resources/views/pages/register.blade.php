@@ -28,20 +28,30 @@
             </div>
             <div class="form w-[80%] m-auto p-5">
                 <h1 class="text-4xl font-bold">Register</h1>
-                <form id="registForm">
+                <form id="registForm" action="/register" method="post">
                     @csrf
                     <div class="grid gap-6">
                         <div class="mt-4">
                             <label for="username" class="block text-xl font-medium font-bold">Username</label>
-                            <input type="text" id="username" name="username"
+                            <input type="text" id="name" name="name"
                                 class="bg-[#d9d9d9] text-sm rounded-lg focus:ring-[#193969] focus:border-[#193969] block w-full p-2.5"
                                 required />
+                            @if($errors->register->has('name'))
+                                @foreach($errors->register->get('name') as $msg)
+                                    <p id="textError" class="text-red-600 font-bold">{{ $msg }}</p>
+                                @endforeach
+                            @endif
                         </div>
                         <div class="">
                             <label for="email" class="block text-xl font-medium font-bold">Email</label>
                             <input type="email" id="email" name="email"
                                 class="bg-[#d9d9d9] text-sm rounded-lg focus:ring-[#193969] focus:border-[#193969] block w-full p-2.5"
                                 required />
+                            @if($errors->register->has('email'))
+                                @foreach($errors->register->get('email') as $msg)
+                                    <p id="textError" class="text-red-600 font-bold">{{ $msg }}</p>
+                                @endforeach
+                            @endif
                         </div>
                         <div>
                             <label for="password" class="block text-xl font-medium font-bold">Password</label>
@@ -52,10 +62,14 @@
                         <div id="divConfirmPassword">
                             <label for="repassword" class="block text-xl font-medium font-bold">Confirm
                                 Password</label>
-                            <input type="password" id="repassword" name="repassword"
+                            <input type="password" id="password_confirmation" name="password_confirmation"
                                 class="bg-[#d9d9d9] text-sm rounded-lg focus:ring-[#193969] focus:border-[#193969] block w-full p-2.5"
                                 required />
-                            <p id="textError" class="text-red-600 font-bold" style="display: hidden"></p>
+                            @if($errors->register->has('password'))
+                                @foreach($errors->register->get('password') as $msg)
+                                    <p id="textError" class="text-red-600 font-bold">{{ $msg }}</p>
+                                @endforeach
+                            @endif
                         </div>
                         <div class="flex flex-col justify-center items-center">
                             <button type="submit"
@@ -73,77 +87,77 @@
 
     <script type="module">
         // Import the functions you need from the SDKs you need
-        import {
-            initializeApp
-        } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import {
-            getDatabase,
-            set,
-            ref
-        } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
-        import {
-            getAuth,
-            createUserWithEmailAndPassword
-        } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-        import {
-            getAnalytics
-        } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-            apiKey: "AIzaSyBPu5uEahrPRhWb-2YfDcx_q-VnQ_V71Co",
-            authDomain: "memoir-unsika.firebaseapp.com",
-            projectId: "memoir-unsika",
-            storageBucket: "memoir-unsika.appspot.com",
-            messagingSenderId: "228249324406",
-            appId: "1:228249324406:web:b3a3550bc9882481354857",
-            measurementId: "G-WD353SZ0WZ",
-            databaseURL: "https://memoir-unsika-default-rtdb.asia-southeast1.firebasedatabase.app/"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-        const auth = getAuth(app);
-        const analytics = getAnalytics(app);
-
-        let username = document.getElementById('username');
-        let email = document.getElementById('email');
-        let password = document.getElementById('password');
-        let repassword = document.getElementById('repassword');
-        let registForm = document.getElementById('registForm');
-        let divConfirmPassword = document.getElementById('divConfirmPassword');
-        let textError = document.getElementById('textError');
-
-        let RegisterUser = evt => {
-            evt.preventDefault();
-            if (password.value === repassword.value) {
-                createUserWithEmailAndPassword(auth, email.value, password.value).then((credentials) => {
-                    set(ref(db, 'UserAuthList/' + credentials.user.uid), {
-                        username: username.value,
-                        email: email.value,
-                        potoProfile: "src/img/man.jpg"
-                    })
-                    alert('berhasil register');
-                }).catch((error) => {
-                    console.log(error.message);
-                    let errorMessage = error.message; // Assuming error.message contains the error message
-                    textError.textContent =
-                        errorMessage; // Set the text content of the paragraph element to the error message
-                    document.getElementById('divConfirmPassword').appendChild(
-                        textError); // Append the paragraph element to the divConfirmPassword div
-                })
-            } else {
-                textError.textContent = "Your password doesn't match with your confirm password";
-                document.getElementById('divConfirmPassword').appendChild(
-                    textError); // Append the paragraph element to the divConfirmPassword div
-            }
-        }
-
-        registForm.addEventListener('submit', RegisterUser);
+        // import {
+        //     initializeApp
+        // } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        // import {
+        //     getDatabase,
+        //     set,
+        //     ref
+        // } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+        // import {
+        //     getAuth,
+        //     createUserWithEmailAndPassword
+        // } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+        // import {
+        //     getAnalytics
+        // } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+        // // TODO: Add SDKs for Firebase products that you want to use
+        // // https://firebase.google.com/docs/web/setup#available-libraries
+        //
+        // // Your web app's Firebase configuration
+        // // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        // const firebaseConfig = {
+        //     apiKey: "AIzaSyBPu5uEahrPRhWb-2YfDcx_q-VnQ_V71Co",
+        //     authDomain: "memoir-unsika.firebaseapp.com",
+        //     projectId: "memoir-unsika",
+        //     storageBucket: "memoir-unsika.appspot.com",
+        //     messagingSenderId: "228249324406",
+        //     appId: "1:228249324406:web:b3a3550bc9882481354857",
+        //     measurementId: "G-WD353SZ0WZ",
+        //     databaseURL: "https://memoir-unsika-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        // };
+        //
+        // // Initialize Firebase
+        // const app = initializeApp(firebaseConfig);
+        // const db = getDatabase(app);
+        // const auth = getAuth(app);
+        // const analytics = getAnalytics(app);
+        //
+        // let username = document.getElementById('username');
+        // let email = document.getElementById('email');
+        // let password = document.getElementById('password');
+        // let repassword = document.getElementById('repassword');
+        // let registForm = document.getElementById('registForm');
+        // let divConfirmPassword = document.getElementById('divConfirmPassword');
+        // let textError = document.getElementById('textError');
+        //
+        // let RegisterUser = evt => {
+        //     evt.preventDefault();
+        //     if (password.value === repassword.value) {
+        //         createUserWithEmailAndPassword(auth, email.value, password.value).then((credentials) => {
+        //             set(ref(db, 'UserAuthList/' + credentials.user.uid), {
+        //                 username: username.value,
+        //                 email: email.value,
+        //                 potoProfile: "src/img/man.jpg"
+        //             })
+        //             alert('berhasil register');
+        //         }).catch((error) => {
+        //             console.log(error.message);
+        //             let errorMessage = error.message; // Assuming error.message contains the error message
+        //             textError.textContent =
+        //                 errorMessage; // Set the text content of the paragraph element to the error message
+        //             document.getElementById('divConfirmPassword').appendChild(
+        //                 textError); // Append the paragraph element to the divConfirmPassword div
+        //         })
+        //     } else {
+        //         textError.textContent = "Your password doesn't match with your confirm password";
+        //         document.getElementById('divConfirmPassword').appendChild(
+        //             textError); // Append the paragraph element to the divConfirmPassword div
+        //     }
+        // }
+        //
+        // registForm.addEventListener('submit', RegisterUser);
     </script>
 </body>
 
