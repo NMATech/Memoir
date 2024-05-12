@@ -18,19 +18,25 @@
     composer install
     ```
 
-4. Serve the application:
+4. Migrating database
+    
+    ```bash
+    php artisan migrate
+   ```
+
+5. Serve the application:
 
     ```bash
     php artisan serve
     ```
 
-5. Run tailwind vite:
+6. Run tailwind vite:
 
     ```bash
     npm run dev
     ```
 
-5. Visit `http://localhost` in your browser to access Memoir.
+7. Visit `http://localhost` in your browser to access Memoir.
 
 ## Website screenshots
 1. Login
