@@ -120,23 +120,23 @@
 
         let RegisterUser = evt => {
             evt.preventDefault();
-            if (password.value === repassword.value) {
-                createUserWithEmailAndPassword(auth, email.value, password.value).then((credentials) => {
-                    set(ref(db, 'UserAuthList/' + credentials.user.uid), {
-                        username: username.value,
-                        email: email.value,
-                        potoProfile: "src/img/man.jpg"
-                    })
-                    alert('berhasil register');
-                }).catch((error) => {
-                    console.log(error.message);
-                    let errorMessage = error.message; // Assuming error.message contains the error message
-                    textError.textContent =
-                        errorMessage; // Set the text content of the paragraph element to the error message
-                    document.getElementById('divConfirmPassword').appendChild(
-                        textError); // Append the paragraph element to the divConfirmPassword div
+            createUserWithEmailAndPassword(auth, email.value, password.value).then((credentials) => {
+                set(ref(db, 'UserAuthList/' + credentials.user.uid), {
+                    username: username.value,
+                    email: email.value,
+                    potoProfile: "src/img/man.jpg"
                 })
-            } else {
+                alert('berhasil register');
+                window.location.href = "./login"
+            }).catch((error) => {
+                console.log(error.message);
+                let errorMessage = error.message; // Assuming error.message contains the error message
+                textError.textContent =
+                    errorMessage; // Set the text content of the paragraph element to the error message
+                document.getElementById('divConfirmPassword').appendChild(
+                    textError); // Append the paragraph element to the divConfirmPassword div
+            })
+            if (password.value == repassword.value) {} else {
                 textError.textContent = "Your password doesn't match with your confirm password";
                 document.getElementById('divConfirmPassword').appendChild(
                     textError); // Append the paragraph element to the divConfirmPassword div

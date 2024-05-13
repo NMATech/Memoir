@@ -49,7 +49,7 @@
                                     and conditions</a>.</label>
                         </div>
                         <div class="flex flex-col justify-center items-center">
-                            <button type="submit"
+                            <button type="submit" name="submit"
                                 class="w-[80%] text-white bg-[#193969] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Login</button>
                             <p class="font-bold">Don't have an account? <a href="/register"
                                     class="text-[#193969] hover:text-blue-800">Register</a></p>
@@ -100,12 +100,13 @@
             storageBucket: "memoir-unsika.appspot.com",
             messagingSenderId: "228249324406",
             appId: "1:228249324406:web:b3a3550bc9882481354857",
-            measurementId: "G-WD353SZ0WZ"
+            measurementId: "G-WD353SZ0WZ",
+            databaseURL: "https://memoir-unsika-default-rtdb.asia-southeast1.firebasedatabase.app/"
         };
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const db = getDatabase();
+        const db = getDatabase(app);
         const dbref = ref(db);
         const auth = getAuth(app);
         const analytics = getAnalytics(app);
@@ -127,7 +128,7 @@
                             email: snapshot.val().email
                         }))
                         sessionStorage.setItem("user-creds", JSON.stringify(credentials.user));
-                        windows.location.href = 'home.blade.php';
+                        window.location.replace('./home');
                     }
                 })
             }).catch((error) => {
