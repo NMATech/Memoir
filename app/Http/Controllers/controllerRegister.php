@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 
 class controllerRegister extends Controller
@@ -24,14 +25,12 @@ class controllerRegister extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
         $username = $request->input('username');
         $email = $request->input('email');
         $password = $request->input('password');
         $confirmPassword = $request->input('confirm-password');
-
-        
     }
 
     /**
