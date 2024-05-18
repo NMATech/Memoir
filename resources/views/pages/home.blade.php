@@ -63,16 +63,18 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a href="#"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <button
+                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                                    onclick="showCard('notification')">
                                     <svg class="flex-shrink-0 w-[28px] h-[28px] text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                                         height="24" fill="currentColor" viewBox="0 0 24 24">
                                         <path
                                             d="M17.133 12.632v-1.8a5.406 5.406 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V3.1a1 1 0 0 0-2 0v2.364a.955.955 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C6.867 15.018 5 15.614 5 16.807 5 17.4 5 18 5.538 18h12.924C19 18 19 17.4 19 16.807c0-1.193-1.867-1.789-1.867-4.175ZM8.823 19a3.453 3.453 0 0 0 6.354 0H8.823Z" />
                                     </svg>
-                                    <span>3</span>
-                                </a>
+                                    <span
+                                        class="absolute bg-rose-600 text-white rounded-full ps-1 pr-1 mb-7 ms-4">3</span>
+                                </button>
                             </li>
                             <li class="hidden md:block">
                                 <a href="#"
@@ -155,13 +157,7 @@
                 <li>
                     <a href="#"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="flex-shrink-0 w-[28px] h-[28px] text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            fill="currentColor" viewBox="0 0 24 24">
-                            <path fill-rule="evenodd"
-                                d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm10 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-8-5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1.942 4a3 3 0 0 0-2.847 2.051l-.044.133-.004.012c-.042.126-.055.167-.042.195.006.013.02.023.038.039.032.025.08.064.146.155A1 1 0 0 0 6 17h6a1 1 0 0 0 .811-.415.713.713 0 0 1 .146-.155c.019-.016.031-.026.038-.04.014-.027 0-.068-.042-.194l-.004-.012-.044-.133A3 3 0 0 0 10.059 14H7.942Z"
-                                clip-rule="evenodd" />
-                        </svg>
+                        <img src="{{ asset('src/img/man.jpg') }}" alt="" class="w-[30px] rounded-full">
 
                         <span class="flex-1 ms-3 whitespace-nowrap">Profile</span>
                     </a>
@@ -174,10 +170,28 @@
     {{-- Content --}}
     <div class="p-4 mt-5 sm:ml-64">
         <div class="flex flex-col p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-            <div>
+            <div class="mt-4">
+                <h1 class="font-bold text-2xl">Stories</h1>
+            </div>
+            <div class="flex gap-3">
                 {{-- Stories --}}
-                <div class="mt-4">
-                    <h1 class="font-bold text-2xl">Stories</h1>
+                <div class="pt-2">
+                    <div class="flex relative w-[150px] h-[200px] bg-gray-500 border border-black rounded-lg">
+                        <div
+                            class="flex h-full justify-center items-center bg-white items-center gap-[3px] p-2 absolute bottom-0 w-[100%]">
+                            <div class="w-[50px] h-[50px] rounded-full">
+                                <img src="{{ asset('src/img/adam.jpeg') }}" alt=""
+                                    class="w-[100%] h-[100%] object-cover rounded-full">
+                            </div>
+                            <div
+                                class="bg-gray-600 flex opacity-[5px] justify-center items-center absolute w-[50px] h-[50px] rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-white">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="pt-2">
                     <div class="flex relative w-[150px] h-[200px]">
@@ -285,11 +299,13 @@
                         <h4 class="text-md">Current Active</h4>
                     </div>
                     <div class="flex justify-center items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
-                        </svg>
+                        <button id="btnDm" onclick="showCard('dm')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 <div class="flex p-2">
@@ -328,10 +344,187 @@
                 </div>
             </div>
             {{-- Card friend end --}}
+
+            {{-- Container dm --}}
+            <div class="w-[390px] h-[540px] flex-col fixed bottom-[10px] right-[50px] shadow-xl bg-white"
+                id="containerDm" style="display: none; transition: transform 1s ease-out;">
+                <div class="flex w-[100%] border border-end">
+                    <div class="w-[70%] flex justify-start items-center p-3">
+                        <img src="{{ asset('src/img/cancan.jpeg') }}" alt=""
+                            class="w-[50px] h-[50px] object-cover rounded-full mr-2">
+                        <div>
+                            <h1 class="text-xl">bocahSunda</h1>
+                            <h1 class="text-md">Recent Active</h1>
+                        </div>
+                    </div>
+                    <div class="flex justify-around items-center p-2">
+                        <button class="ms-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6 fill-current text-[#193969]">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                            </svg>
+                        </button>
+                        <button class="ms-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6 fill-current text-[#193969]">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+                            </svg>
+                        </button>
+                        <button class="ms-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6 fill-current text-[#193969]">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                            </svg>
+                        </button>
+                        <button class="ms-5" onclick="closeCard('dm')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6 fill-current text-[#193969]">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="h-[80%] mt-5">
+                    <div class="bg-[#D9D9D9] rounded-xl p-2 w-max m-3 ms-4">
+                        <h1 class="">Din, papkeun tugas</h1>
+                    </div>
+                    <div class="bg-[#89b5fa] rounded-xl p-2 w-max m-3 ms-[17em]">
+                        <h1>Tf heula 10k</h1>
+                    </div>
+                </div>
+                <div class="flex justify-around items-center p-2">
+                    <input type="file" id="fileUpload" style="display:none;" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-7 h-7 text-[#193969]">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-[#193969]">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm3.75 11.625a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                        </svg>
+                    </button>
+                    <button onclick="closedm()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-[#193969]">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                    </button>
+                    <input type="text" class="bg-[#dedede] rounded-full" placeholder=". . .">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-[#193969]">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            {{-- Container dm end --}}
+
+            {{-- Container notification --}}
+            <div class="bg-white w-[500px] h-[500px] absolute bottom-[10px] right-[50px]" id="containerNotif"
+                style="display: none;">
+                <div>
+                    <div class="flex justify-between p-2">
+                        <h1 class="font-bold text-[#193969] text-xl ml-2">Notification</h1>
+                        <button class="ms-5" onclick="closeCard('notification')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6 fill-current text-[#193969]">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-2">
+                        <button class="bg-white text-[#193969] rounded-full px-[22px] py-[8px]">Read</button>
+                        <button class="bg-[#193969] text-white rounded-full px-[22px] py-[8px]">Unread</button>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div class="flex p-2 justify-between">
+                            <h1 class="font-bold text-xl ml-2">New</h1>
+                            <h1 class="font-bold text-xl text-[#193969] mr-2">see all</h1>
+                        </div>
+                        <div>
+                            <div class="flex">
+                                <div class="p-2 mr-5 ml-3">
+                                    <img src="{{ asset('src/img/cancan.jpeg') }}" alt=""
+                                        class="w-[50px] h-[50px] rounded-full">
+                                </div>
+                                <div class="flex flex-col justify-center items-start">
+                                    <h1 class="text-lg">bocahSunda posted a thread you might like.</h1>
+                                    <h1 class="text-md text-[#193969]">3 hours ago</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex p-2 justify-between">
+                            <h1 class="font-bold text-xl ml-2">Previous</h1>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex">
+                                <div class="p-2 mr-5 ml-3">
+                                    <img src="{{ asset('src/img/womanImage.jpg') }}" alt=""
+                                        class="w-[50px] h-[50px] rounded-full object-cover">
+                                </div>
+                                <div class="flex flex-col justify-center items-start">
+                                    <h1 class="text-lg">btr_rachel liked your story</h1>
+                                    <h1 class="text-md text-[#193969]">2 days ago</h1>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="p-2 mr-5 ml-3">
+                                    <img src="{{ asset('src/img/man.jpg') }}" alt=""
+                                        class="w-[50px] h-[50px] rounded-full object-cover">
+                                </div>
+                                <div class="flex flex-col justify-center items-start">
+                                    <h1 class="text-lg">Kim Jong Un started to following you.</h1>
+                                    <h1 class="text-md text-[#193969]">1 weeks ago</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- Container notification end --}}
         </div>
     </div>
     {{-- Content End --}}
 
 </body>
+
+<script>
+    function showCard(x) {
+        if (x == "dm") {
+            var cardDm = document.getElementById('containerDm');
+
+            cardDm.style.display = 'flex';
+            cardDm.addclasslist = 'translate-y-[-100%]'
+        } else if (x == "notification") {
+            var cardNotif = document.getElementById('containerNotif');
+
+            cardNotif.style.display = 'block';
+        }
+    }
+
+    function closeCard(x) {
+        if (x == "dm") {
+            var cardDm = document.getElementById('containerDm');
+
+            cardDm.style.display = 'none';
+        } else if (x == "notification") {
+            var cardNotif = document.getElementById('containerNotif');
+
+            cardNotif.style.display = 'none';
+        }
+    }
+</script>
 
 </html>
