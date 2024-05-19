@@ -84,7 +84,8 @@
         </div>
 
         {{-- Popup register --}}
-        {{-- <div class="bg-white w-[500px] h-[140px] absolute right-[500px] bottom-[300px] rounded-2xl shadow-xl">
+        {{-- <div class="bg-white w-[500px] h-[140px] absolute right-[500px] bottom-[300px] rounded-2xl shadow-xl"
+            style="display: none;" id="messageCard">
             <div class="flex justify-center items-center h-[50%]">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-12 h-12 text-[#193969]">
