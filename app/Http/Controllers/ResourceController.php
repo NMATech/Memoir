@@ -21,4 +21,10 @@ class ResourceController extends Controller
         return response()->file($path);
 //        }
     }
+
+    public function getPostImg(Request $request)
+    {
+        $path = storage_path('app/' . $request->path());
+        return response()->file($path);
+    }
 }

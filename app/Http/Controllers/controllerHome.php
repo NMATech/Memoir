@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use function Laravel\Prompts\error;
 
 class controllerHome extends Controller
 {
@@ -13,7 +16,7 @@ class controllerHome extends Controller
     {
         return view('pages.login');
     }
-    
+
     public function register()
     {
         return view('pages.register');

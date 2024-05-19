@@ -20,6 +20,7 @@ class UserResource extends JsonResource
             'user_email' => $this->email,
             'user_created_at' => $this->created_at,
             'user_profile' => new UserProfileResource($this->user_profile),
+//            'posts' => PostResource::collection($this->post),
         ];
     }
 }

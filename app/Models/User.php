@@ -4,6 +4,7 @@ namespace App\Models;
 
 // user Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -48,7 +49,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserProfile::class, 'user_id');
     }
-
+    public function post() : HasMany
+    {
+        return $this->hasMany(Post::class, 'user_id');
+    }
     public static function getEntryById($id)
     {
         return self::query()->find($id);

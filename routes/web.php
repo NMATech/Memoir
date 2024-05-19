@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function (){
         ->name('user.update_profile');
 
     Route::get('img/{dir}/{id}.jpg', [ResourceController::class, 'getImg']);
+    Route::get('public/images/post/{wildcard}', [ResourceController::class, 'getPostImg'])
+        ->where('wildcard', '.*');
 });
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);

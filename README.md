@@ -41,3 +41,6 @@
 ## Website screenshots
 1. Login
    ![image](https://github.com/NMATech/Memoir/assets/107752721/6bc6b7de-216c-4505-8ad2-b3480bf7850f)
+
+## API Documentation
+[links](https://documenter.getpostman.com/view/28068209/2sA3QmDa3T)
