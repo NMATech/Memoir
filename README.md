@@ -49,3 +49,7 @@
    ![image](https://github.com/NMATech/Memoir/assets/107752721/d499c843-0d6f-441b-9832-c8548f05b42b)
 5. Notification card
    ![image](https://github.com/NMATech/Memoir/assets/107752721/e31bdf2b-a52e-49c7-a70d-2d3e2233a087)
+6. Profile Page
+   ![image](https://github.com/NMATech/Memoir/assets/107752721/4646d71c-b203-45b1-93d5-9050edd10342)
+7. Edit Profile card
+   ![image](https://github.com/NMATech/Memoir/assets/107752721/71b20da5-66c7-4ad0-b099-e6d8eb86e1d8)
