@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserProfileRequest;
+use App\Http\Resources\PostResource;
 use App\Http\Resources\UserProfileResource;
 use App\Http\Resources\UserResource;
+use App\Models\Post;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
@@ -21,7 +23,7 @@ class UserProfileController extends Controller
             'bio' => ['string'],
             'avatar_url' => ['image', 'max:2048']
         ]);
-        if($request->has('avatar_url')){
+        if($request->has('header')){
             $image_path = 'public/images/avatar/';
             $file = $request->file('avatar_url');
             $file->storeAs($image_path, $request->user()->id . '.jpg');
@@ -32,7 +34,7 @@ class UserProfileController extends Controller
         if($profile){
             if($request->has('full_name')) $profile->full_name = $request->full_name;
             if($request->has('bio')) $profile->bio = $request->bio;
-            if($request->has('avatar_url')) $profile->avatar_url = $image_path;
+            if($request->has('avatar_url')) $profile->avatar_url = '/' . $image_path;
 
 
             $profile->save();
@@ -45,11 +47,10 @@ class UserProfileController extends Controller
     {
         $user = User::getEntryById($request->user()->id);
         $res = new UserResource($user);
+        $posts = Post::query()->where('user_id', $request->id)->get();
+        $postRes = PostResource::collection($posts);
 
-//        return response()->json([
-//            'data' => $res,
-//        ]);
-
-        return view('pages.user.user_profile')->with('data', $res->toJson())->with('avatar_url', $res->user_profile->avatar_url);
+        return view('pages.user.user_profile')->with('user', $res->toJson(JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT))
+            ->with('posts', $postRes->toJson(JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
     }
 }

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
@@ -28,9 +30,21 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/user_profile', [UserProfileController::class, 'show'])
         ->name('user.profile');
-
     Route::post('/user_profile', [UserProfileController::class, 'update'])
         ->name('user.update_profile');
+
+    Route::prefix('post')->group(function (){
+        Route::get('/', [PostController::class, 'view'])
+            ->name('user.post_create');
+        Route::post('/', [PostController::class, 'store']);
+        Route::get('/{id}', [PostController::class, 'show'])
+            ->name('user.post_show');
+    });
+
+    Route::prefix('comment')->group(function (){
+        Route::post('/', [CommentController::class, 'store']);
+    });
+
 
     Route::get('img/{dir}/{id}.jpg', [ResourceController::class, 'getImg']);
     Route::get('public/images/post/{wildcard}', [ResourceController::class, 'getPostImg'])

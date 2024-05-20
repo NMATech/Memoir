@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="{{ asset('js/app.js') }}"></script>
     <title>Memoir</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -141,7 +142,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="/post"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-[28px] h-[28px] text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -157,7 +158,7 @@
                 <li>
                     <a href="/user_profile"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <img src="{{ $avatar_url }}" alt=""
+                        <img src="{{ $user->user_profile->avatar_url }}" alt=""
                             class="w-[30px] h-[30px] object-cover rounded-full">
 
                         <span class="flex-1 ms-3 whitespace-nowrap">Profile</span>

@@ -14,24 +14,27 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($post_id)
+    public static function index($post_id)
     {
         $comments = Post::query()->find($post_id)->comment()->get();
         return CommentResource::collection($comments);
-
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CommentRequest $request, $post_id)
+    public function store(CommentRequest $request)
     {
+        $request->validate([
+            'post_id' => ['required', 'integer'],
+        ]);
+
         $comment = new Comment();
         $comment->post_id = $request->post_id;
         $comment->message = $request->message;
         $comment->save();
 
-        return new CommentResource($comment);
+        return response()->redirectTo('post/' . $request->post_id);
     }
 
     /**

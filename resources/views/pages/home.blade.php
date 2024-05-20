@@ -1,7 +1,21 @@
 @extends('pages.template.template')
 
 @section('content')
-    <div class="mt-4">
+{{--    uncomment to see all included data--}}
+{{--    <pre>$posts: {{ var_dump($posts) }}</pre>--}}
+
+{{--    example --}}
+{{--@foreach(json_decode($posts) as $post)--}}
+{{--    <p>Post title: {{ $post->title }}</p>--}}
+{{--    @foreach($post->comments as $comment)--}}
+{{--        <p>Comment: {{ $comment->comment_message }}</p>--}}
+{{--    @endforeach--}}
+{{--@endforeach--}}
+
+
+@php($user = json_decode($user))
+
+<div class="mt-4">
         <h1 class="font-bold text-2xl">Stories</h1>
     </div>
     <div class="flex gap-3">

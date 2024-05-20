@@ -20,10 +20,12 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        $request->user()->tokens()->delete();
-        $token = $request->user()->createToken('api-token');
+//        $request->user()->tokens()->delete();
+//        $token = $request->user()->createToken('api-token');
 
-        $request->session()->put('api-token', $token->plainTextToken);
+//        $request->session()->put('api-token', $token->plainTextToken);
+
+
 
         return response()->redirectToRoute('home');
     }
@@ -37,7 +39,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->invalidate();
 
-        $request->user()->tokens()->delete();
+//        $request->user()->tokens()->delete();
         $request->session()->regenerateToken();
 
         return response()->noContent();

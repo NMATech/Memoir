@@ -2,20 +2,22 @@
 
 @section('content')
     {{-- uncomment to see what key value i included --}}
-    {{-- <p>{{ var_dump($data) }}</p> <br> --}}
-    {{-- <p>{{ var_dump($avatar_url) }}</p> <br> --}}
-    {{-- to access it --}}
-    {{-- <p>{{ json_decode($data)->user_id }}</p> --}}
+    {{-- <pre>{{ var_dump($user) }}</pre> <br> --}}
+{{--     <pre>$posts: {{ var_dump($posts) }}</pre>--}}
 
-    {{-- access avatar image --}}
+{{--    decode--}}
+@php
+    $user = json_decode($user);
+    $posts = json_decode($posts);
+@endphp
 
     <div class="">
         <div class="p-2">
             <div class="flex p-3">
-                <img src="{{ $avatar_url }}" class="w-[220px] h-[220px] rounded-full object-cover ml-[100px]">
+                <img src="{{ $user->user_profile->avatar_url }}" class="w-[220px] h-[220px] rounded-full object-cover ml-[100px]">
                 <div class="w-[50%] flex flex-col justify-center items-center gap-[10px] ml-[150px]">
                     <div class="w-full flex justify-center items-center h-[25%]">
-                        <h1 class="text-3xl">{{ json_decode($data)->user_name }}</h1>
+                        <h1 class="text-3xl">{{ $user->user_name }}</h1>
                     </div>
                     <div class="w-full flex justify-around items-center w-[50%] h-[25%]">
                         <div class="w-[25%] text-center">
@@ -32,8 +34,8 @@
                         </div>
                     </div>
                     <div class="w-[80%] p-2 mx-auto mt-3">
-                        <h1 class="text-xl">{{ json_decode($data)->user_profile->full_name }}</h1>
-                        <h1 class="text-lg">{{ json_decode($data)->user_profile->bio }}</h1>
+                        <h1 class="text-xl">{{ $user->user_profile->full_name }}</h1>
+                        <h1 class="text-lg">{{ $user->user_profile->bio }}</h1>
 
                         <div class="flex justify-end">
                             <button
@@ -79,7 +81,7 @@
             <form action="/user_profile" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="flex justify-between items-center mt-3 p-2 border border-black rounded-2xl">
-                    <img src="{{ $avatar_url }}" alt="" class="w-[70px] h-[70px] object-cover rounded-full">
+                    <img src="{{ $user->user_profile->avatar_url }}" alt="" class="w-[70px] h-[70px] object-cover rounded-full">
                     <div class="flex justify-center items-center">
                         <label for="avatar_url"
                             class="bg-[#193969]/50 hover:bg-[#193969] w-max py-[5px] px-[10px] text-black hover:text-white cursor-pointer rounded-xl">
@@ -91,18 +93,18 @@
                 <span id="file-chosen" class="ml-3 text-black"></span>
                 <h1 class="font-bold text-lg mt-3">Email</h1>
                 <div class="flex mt-3">
-                    <input type="email" value="{{ json_decode($data)->user_email }}"
+                    <input type="email" value="{{ $user->user_email }}"
                         class="bg-[#dedede] border border-black rounded-2xl w-full p-2" disabled>
                 </div>
                 <h1 class="font-bold text-lg mt-3">Fullname</h1>
                 <div class="flex mt-3">
-                    <input type="text" value="{{ json_decode($data)->user_profile->full_name }}"
+                    <input type="text" value="{{ $user->user_profile->full_name }}"
                         class="bg-[#dedede] border border-black focus:border-[#193969] focus:bg-[#cecece] rounded-2xl w-full p-2"
                         id="full_name" name="full_name">
                 </div>
                 <h1 class="font-bold text-lg mt-3">Bio</h1>
                 <div class="flex mt-3">
-                    <input type="text" value="{{ json_decode($data)->user_profile->bio }}"
+                    <input type="text" value="{{ $user->user_profile->bio }}"
                         class="bg-[#dedede] border border-black focus:border-[#193969] focus:bg-[#cecece] rounded-2xl w-full p-2"
                         id="bio" name="bio">
                 </div>

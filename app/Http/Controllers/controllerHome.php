@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserProfileRequest;
+use App\Http\Resources\PostResource;
 use App\Http\Resources\UserResource;
+use App\Models\Post;
 use App\Models\User;
+use function Laravel\Prompts\error;
 
 
 class controllerHome extends Controller
@@ -24,9 +27,13 @@ class controllerHome extends Controller
 
     public function home(UserProfileRequest $request)
     {
-        $user = User::getEntryById($request->user()->id);
-        $res = new UserResource($user);
+        $res = new UserResource($request->user());
 
-        return view('pages.home')->with('data', $res->toJson())->with('avatar_url', $res->user_profile->avatar_url);
+        $posts = Post::all();
+
+        $postRes = PostResource::collection($posts);
+
+        return view('pages.home')->with('user', $res->toJson(JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT))
+            ->with('posts', $postRes->toJson(JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
     }
 }
