@@ -39,12 +39,17 @@ Route::middleware('auth')->group(function (){
         Route::post('/', [PostController::class, 'store']);
         Route::get('/{id}', [PostController::class, 'show'])
             ->name('user.post_show');
+        Route::delete('/{id}', [PostController::class, 'destroy']);
     });
 
     Route::prefix('comment')->group(function (){
         Route::post('/', [CommentController::class, 'store']);
+        Route::delete('/{id}', [CommentController::class, 'destroy']);
     });
 
+    Route::prefix('user')->group(function (){
+        Route::post('logout', [AuthenticatedSessionController::class, 'destroy']);
+    });
 
     Route::get('img/{dir}/{id}.jpg', [ResourceController::class, 'getImg']);
     Route::get('public/images/post/{wildcard}', [ResourceController::class, 'getPostImg'])

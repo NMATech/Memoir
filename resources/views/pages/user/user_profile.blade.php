@@ -11,6 +11,12 @@
     $posts = json_decode($posts);
 @endphp
 
+{{--    Logout--}}
+    <form action="/user/logout" method="post">
+        @csrf
+        <button type="submit">Logout</button>
+    </form>
+
     <div class="">
         <div class="p-2">
             <div class="flex p-3">
