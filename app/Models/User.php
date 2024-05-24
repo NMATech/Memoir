@@ -53,6 +53,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class, 'user_id');
     }
+    public function user_relationship(): HasMany
+    {
+        return $this->hasMany(UserRelationship::class, 'to');
+    }
     public static function getEntryById($id)
     {
         return self::query()->find($id);

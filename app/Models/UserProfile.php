@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Relationship;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -30,7 +31,7 @@ class UserProfile extends Model
         $user_profile = new self();
         $user_profile->full_name = $user->name;
         $user_profile->bio = 'Your Bio';
-        $user_profile->avatar_url = 'img/avatar/man.jpg';
+        $user_profile->avatar_url = '/img/avatar/man.jpg';
         $user_profile->user_id = $user->id;
 
         $user_profile->save();

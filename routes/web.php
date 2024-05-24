@@ -5,7 +5,9 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\UserRelationshipController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\controllerHome;
 /*
@@ -28,10 +30,17 @@ Route::middleware('auth')->group(function (){
     Route::get('/home', [controllerHome::class, 'home'])
         ->name('home');
 
-    Route::get('/user_profile', [UserProfileController::class, 'show'])
-        ->name('user.profile');
+    Route::get('/user_profile/{id}', [UserProfileController::class, 'show'])
+        ->where('id', '[0-9]+');
     Route::post('/user_profile', [UserProfileController::class, 'update'])
         ->name('user.update_profile');
+
+    Route::post('/search', SearchController::class);
+
+    Route::post('/user/follow/{id}', [UserRelationshipController::class, 'followUser'])
+        ->where('id', '[0-9]+');
+    Route::post('/user/block/{id}', [UserRelationshipController::class, 'blockUser'])
+        ->where('id', '[0-9]+');
 
     Route::prefix('post')->group(function (){
         Route::get('/', [PostController::class, 'view'])

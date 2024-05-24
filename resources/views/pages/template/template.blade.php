@@ -34,9 +34,10 @@
                 </div>
                 <div class="flex flex-row p-3 items-center justify-end md:justify-between w-[80%]">
                     <div class="ms-5 hidden md:block">
-                        <form class="max-w-md mx-auto">
+                        <form class="max-w-md mx-auto" action="/search" method="post">
+                            @csrf
                             <div class="relative">
-                                <input type="search" id="default-search"
+                                <input type="search" id="default-search" name="input"
                                     class="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Search Account" required />
                                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -52,7 +53,7 @@
                     <div class="">
                         <ul class="flex gap-2">
                             <li class="hidden md:block">
-                                <a href="/user_profile"
+                                <a href="/user_profile/{{ Auth::user()->id }}"
                                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                     <svg class="flex-shrink-0 w-[28px] h-[28px] text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -156,7 +157,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/user_profile"
+                    <a href="/user_profile/{{ Auth::user()->id }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <img src="{{ $user->user_profile->avatar_url }}" alt=""
                             class="w-[30px] h-[30px] object-cover rounded-full">

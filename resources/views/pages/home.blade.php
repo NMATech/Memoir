@@ -3,6 +3,8 @@
 @section('content')
 {{--    uncomment to see all included data--}}
 {{--    <pre>$posts: {{ var_dump($posts) }}</pre>--}}
+{{--    <pre>$user: {{ var_dump($user) }}</pre>--}}
+    <pre>$friends: {{ var_dump($friends) }}</pre>
 
 {{--    example --}}
 {{--@foreach(json_decode($posts) as $post)--}}

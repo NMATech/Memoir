@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Relationship;
 use App\Http\Requests\UserProfileRequest;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\UserProfileResource;
@@ -9,6 +10,7 @@ use App\Http\Resources\UserResource;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\UserRelationship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use function Laravel\Prompts\error;
@@ -43,7 +45,7 @@ class UserProfileController extends Controller
         return response()->redirectToRoute('user.profile');
     }
 
-    public function show(UserProfileRequest $request)
+    public function view(UserProfileRequest $request)
     {
         $user = User::getEntryById($request->user()->id);
         $res = new UserResource($user);
@@ -52,5 +54,36 @@ class UserProfileController extends Controller
 
         return view('pages.user.user_profile')->with('user', $res->toJson(JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT))
             ->with('posts', $postRes->toJson(JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+    }
+
+    public function show(UserProfileRequest $request, $id)
+    {
+        $user = User::getEntryById($id);
+        $res = new UserResource($user);
+        $posts = Post::query()->where('user_id', $id)->get();
+        $postRes = PostResource::collection($posts);
+
+        $relationship = UserRelationship::query()->where('from', $request->user()->id)
+            ->where('to', $id)->first();
+        $isBlocked = false;
+        $isFollowed = false;
+        if($relationship){
+            switch ($relationship->status){
+                case Relationship::FRIEND->value:
+                case Relationship::FOLLOWING->value:
+                    $isFollowed = true;
+                    break;
+                case Relationship::BLOCKED->value:
+                    $isBlocked = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return view('pages.user.user_profile')->with('user', $res->toJson(JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT))
+            ->with('posts', $postRes->toJson(JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT))
+            ->with('blocked', $isBlocked)
+            ->with('followed', $isFollowed);
     }
 }

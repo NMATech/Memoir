@@ -3,20 +3,40 @@
 @section('content')
     {{-- uncomment to see what key value i included --}}
     {{-- <pre>{{ var_dump($user) }}</pre> <br> --}}
-{{--     <pre>$posts: {{ var_dump($posts) }}</pre>--}}
+    {{-- <pre>$posts: {{ var_dump($posts) }}</pre>--}}
+    {{-- <pre>$posts: {{ var_dump($followed) }}</pre>--}}
+    {{-- <pre>$posts: {{ var_dump($blocked) }}</pre>--}}
 
 {{--    decode--}}
 @php
     $user = json_decode($user);
     $posts = json_decode($posts);
 @endphp
+    @if('user_profile/'. str(Auth::user()->id) != Request::path())
+        @php($id = substr(Request::path(), strpos(Request::path(), '/')+1))
+        <form action="/user/follow/{{ $id }}" method="post">
+            @csrf
+            @if($followed)
+                <button type="submit">UnFollow</button>
+            @else
+                <button type="submit">Follow</button>
+            @endif
+        </form>
 
-{{--    Logout--}}
-    <form action="/user/logout" method="post">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
-
+        <form action="/user/block/{{ $id }}" method="post">
+            @csrf
+            @if($blocked)
+                <button type="submit">UnBlock</button>
+            @else
+                <button type="submit">Block</button>
+            @endif
+        </form>
+    @else
+        <form action="/user/logout" method="post">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
+    @endif
     <div class="">
         <div class="p-2">
             <div class="flex p-3">

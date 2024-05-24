@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+Artisan::command('check', function (){
+    $str = 'user_profile/21';
+    $this->comment(substr($str, strpos($str, '/', 0)+1));
+});
