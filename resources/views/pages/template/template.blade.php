@@ -32,10 +32,10 @@
                     </a>
                 </div>
                 <div class="flex flex-row p-3 items-center justify-end md:justify-between w-[80%]">
-                    <div class="ms-5 hidden md:block">
+                    <div class="ms-5 hidden md:block ml-[99px]">
                         <form class="max-w-md mx-auto">
                             <div class="relative">
-                                <input type="search" id="default-search"
+                                <input type="search" id="search"
                                     class="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Search Account" required />
                                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -141,7 +141,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="/create_page"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-[28px] h-[28px] text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -241,6 +241,23 @@
                 </div>
             </div>
             {{-- Container notification end --}}
+
+
+            {{-- Container search accound --}}
+            <div class="bg-white absolute w-[450px] p-5 shadow-xl rounded-bl-xl rounded-br-xl" id="containerSearch"
+                style="display: none;">
+                <a href="/other_user">
+                    <div class="flex">
+                        <img src="{{ asset('src/img/akbar.jpeg') }}" alt=""
+                            class="w-[50px] h-[50px] rounded-full object-cover">
+                        <div class="ml-[10px]">
+                            <h2 class="font-bold">iniakbar</h2>
+                            <h3>Rifky Akbar</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {{-- Container search accound end --}}
         </div>
     </div>
     {{-- Content End --}}
@@ -248,6 +265,17 @@
 </body>
 
 <script>
+    document.getElementById('search').addEventListener('input', function() {
+        const query = this.value.trim();
+        var containerSearch = document.getElementById('containerSearch');
+
+        if (query.length > 0) {
+            containerSearch.style.display = 'block';
+        } else {
+            containerSearch.style.display = 'none';
+        }
+    })
+
     function showCard(x) {
         if (x == "dm") {
             var cardDm = document.getElementById('containerDm');

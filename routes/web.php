@@ -6,6 +6,7 @@ use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\controllerHome;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,9 +23,18 @@ Route::get('/', [controllerHome::class, 'login'])
 Route::get('/register', [RegisteredUserController::class, 'view'])
     ->name('register');
 
-Route::middleware('auth')->group(function (){
+Route::middleware('auth')->group(function () {
     Route::get('/home', [controllerHome::class, 'home'])
         ->name('home');
+
+    Route::get('/other_user', [controllerHome::class, 'otherProfile'])
+        ->name('profile');
+
+    Route::get('/create_page', [controllerHome::class, 'createPage'])
+        ->name('create_page');
+
+    Route::get('/create_post', [controllerHome::class, 'createPost'])
+        ->name('create_post');
 
     Route::get('/user_profile', [UserProfileController::class, 'show'])
         ->name('user.profile');
