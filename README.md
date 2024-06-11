@@ -38,6 +38,8 @@
 
 7. Visit `http://localhost` in your browser to access Memoir.
 
+8. Done forget to change env.example to .env
+
 ## Website screenshots
 1. Login
    ![image](https://github.com/NMATech/Memoir/assets/107752721/6bc6b7de-216c-4505-8ad2-b3480bf7850f)
